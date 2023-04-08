@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
               let view = GenresRouter.start().entry else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = view
+        window?.rootViewController = UINavigationController(rootViewController: view)
         window?.makeKeyAndVisible()
     }
 

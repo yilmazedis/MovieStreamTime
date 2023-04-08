@@ -34,6 +34,7 @@
 		01702E5629E18EF2000F96B9 /* UIImage+Preload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5529E18EF2000F96B9 /* UIImage+Preload.swift */; };
 		01702E5829E18F0D000F96B9 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5729E18F0D000F96B9 /* ImageDownloader.swift */; };
 		01702E5A29E18F42000F96B9 /* ManagerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5929E18F42000F96B9 /* ManagerCache.swift */; };
+		01702E5C29E1A1EA000F96B9 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5B29E1A1EA000F96B9 /* UIViewController+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		01702E5529E18EF2000F96B9 /* UIImage+Preload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Preload.swift"; sourceTree = "<group>"; };
 		01702E5729E18F0D000F96B9 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		01702E5929E18F42000F96B9 /* ManagerCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCache.swift; sourceTree = "<group>"; };
+		01702E5B29E1A1EA000F96B9 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			children = (
 				01702E3829E0A81E000F96B9 /* Date+Ext.swift */,
 				01702E5529E18EF2000F96B9 /* UIImage+Preload.swift */,
+				01702E5B29E1A1EA000F96B9 /* UIViewController+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				01702E5829E18F0D000F96B9 /* ImageDownloader.swift in Sources */,
 				01702E3629E0A7DB000F96B9 /* ManagerFail.swift in Sources */,
 				01702E4C29E0DEB0000F96B9 /* Genre.swift in Sources */,
+				01702E5C29E1A1EA000F96B9 /* UIViewController+Ext.swift in Sources */,
 				01702E3429E0A7C6000F96B9 /* LogType.swift in Sources */,
 				01702E3F29E0ABDC000F96B9 /* MoviePresenter.swift in Sources */,
 				01702E5429E18E17000F96B9 /* MovieCell.swift in Sources */,
