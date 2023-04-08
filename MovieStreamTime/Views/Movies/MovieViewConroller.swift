@@ -19,23 +19,25 @@ protocol ViewProtocol: AnyObject {
 class MovieViewConroller: UIViewController {
     
     lazy var groupCollectionView: UICollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: getGroupCompositionalLayout())
+        let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         view.register(MovieCell.self, forCellWithReuseIdentifier: "GroupCollectionViewCell")
         return view
     }()
     
     var interactor: MovieInteractorProtocol?
-    var id = 28
+    var id = 0
     private let movieDataSource = MovieViewDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        interactor?.fetchData(id: id)
+        interactor?.fetchData(id: id, page: 1)
         
         groupCollectionView.delegate = movieDataSource
         groupCollectionView.dataSource = movieDataSource
+        groupCollectionView.collectionViewLayout = movieDataSource
+        movieDataSource.delegate = self
         
         setCollectionViewLayout()
     }
@@ -48,42 +50,6 @@ class MovieViewConroller: UIViewController {
         groupCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         groupCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
-    
-    private func getGroupCompositionalLayout() -> UICollectionViewCompositionalLayout {
-        
-        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/3)))
-        item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
-
-        //--------- Group 1 ---------//
-        let group1Item1 = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)))
-        group1Item1.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
-
-
-        let nestedGroup1Item1 = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2)))
-        nestedGroup1Item1.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
-
-         let nestedGroup2Item1 = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)))
-        nestedGroup2Item1.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
-
-        let nestedGroup2 = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2)), subitems: [nestedGroup2Item1])
-
-        let nestedGroup1 = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)), subitems: [nestedGroup1Item1, nestedGroup2])
-
-        let group1 = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/3)), subitems: [group1Item1, nestedGroup1])
-
-        //--------- Group 2 ---------//
-        let group2Item1 = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1)))
-        group2Item1.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
-
-        let group2 = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/3)), subitems: [group2Item1])
-
-        //--------- Container Group ---------//
-        let containerGroup = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(600)), subitems: [item, group1, group2])
-
-        let section = NSCollectionLayoutSection(group: containerGroup)
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
-    }
 }
 
 extension MovieViewConroller: ViewProtocol {
@@ -91,8 +57,26 @@ extension MovieViewConroller: ViewProtocol {
         print(data)
         
         DispatchQueue.main.async { [weak self] in
-            self?.movieDataSource.movie = data
-            self?.groupCollectionView.reloadData()
+            
+            
+            let newItems = data
+
+            // Calculate the index paths of the new items based on the current count
+            guard let startIndex = self?.groupCollectionView.numberOfItems(inSection: 0) else { return }
+            let endIndex = startIndex + newItems.count - 1
+            let indexPaths = (startIndex...endIndex).map { IndexPath(item: $0, section: 0) }
+
+            self?.movieDataSource.movie.append(contentsOf: data)
+            // Insert the new items to the collection view
+            self?.groupCollectionView.performBatchUpdates({
+                self?.groupCollectionView.insertItems(at: indexPaths)
+            }, completion: nil)
         }
+    }
+}
+
+extension MovieViewConroller: MovieViewDataSourceDelegate {
+    func fetchData(page: Int) {
+        interactor?.fetchData(id: id, page: page)
     }
 }

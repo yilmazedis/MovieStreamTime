@@ -7,36 +7,59 @@
 
 import UIKit
 
-class MovieViewDataSource: UICollectionViewFlowLayout {
+protocol MovieViewDataSourceDelegate: AnyObject {
+    func fetchData(page: Int)
+}
+
+final class MovieViewDataSource: UICollectionViewFlowLayout {
+    
+    weak var delegate: MovieViewDataSourceDelegate?
     
     var movie: [Movie] = []
     var viewControllers = [UIViewController]()
     
+    let itemsPerRow = 3
+    let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 0, right: 10.0)
+    private var currentPage = 1
+    
     override init() {
         super.init()
-        scrollDirection = .horizontal
-        
+        scrollDirection = .vertical
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // YOu can use others, up to you
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        // Check if the user has scrolled to the bottom of the collection view
+        let contentHeight = scrollView.contentSize.height
+        let yOffset = scrollView.contentOffset.y
+        let height = scrollView.frame.height
+        if yOffset + height > contentHeight - 300 {
+            // Increment the page number and make another network call to fetch the data
+            currentPage += 1
+            delegate?.fetchData(page: currentPage)
+        }
+    }
+}
+
+extension MovieViewDataSource: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemWidth = collectionView.bounds.width
-        let itemHeight = collectionView.bounds.height
-        return CGSize(width: itemWidth, height: itemHeight)
+        let paddingSpace = sectionInsets.left * CGFloat(itemsPerRow + 1)
+        let availableWidth = collectionView.frame.width - paddingSpace
+        let widthPerItem = availableWidth / CGFloat(itemsPerRow)
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        0
+        return sectionInsets.left
     }
-    
-}
-
-
-extension MovieViewDataSource: UICollectionViewDelegateFlowLayout {
-    
 }
 
 extension MovieViewDataSource: UICollectionViewDataSource, UICollectionViewDelegate {

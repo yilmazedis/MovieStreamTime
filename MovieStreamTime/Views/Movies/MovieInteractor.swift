@@ -10,15 +10,15 @@ import Foundation
 protocol MovieInteractorProtocol {
     var presenter: MoviePresenterProtocol? { get set }
     
-    func fetchData(id: Int)
+    func fetchData(id: Int, page: Int)
 }
 
 class MovieInteractor: MovieInteractorProtocol {
     var presenter: MoviePresenterProtocol?
 
-    func fetchData(id: Int) {
+    func fetchData(id: Int, page: Int) {
         // fetch data from an external service
-        TMDbManager.shared.fetch(with: "https://api.themoviedb.org/3/discover/movie?api_key=3bb3e67969473d0cb4a48a0dd61af747&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=\(id)") { [weak self] (result: Result<Movies, Error>) in
+        TMDbManager.shared.fetch(with: "https://api.themoviedb.org/3/discover/movie?api_key=3bb3e67969473d0cb4a48a0dd61af747&sort_by=popularity.desc&include_adult=false&include_video=false&page=\(page)&with_genres=\(id)") { [weak self] (result: Result<Movies, Error>) in
                         
             switch result {
             case .success(let movies):
