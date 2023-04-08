@@ -79,4 +79,13 @@ extension MovieViewConroller: MovieViewDataSourceDelegate {
     func fetchData(page: Int) {
         interactor?.fetchData(id: id, page: page)
     }
+    
+    func selectedMovie(with movie: Movie) {
+        let vc = MovieDetailViewController(movie: movie)
+        
+        let navVc = UINavigationController(rootViewController: vc)
+        navVc.modalPresentationStyle = .fullScreen
+        
+        show(navVc, sender: self)
+    }
 }

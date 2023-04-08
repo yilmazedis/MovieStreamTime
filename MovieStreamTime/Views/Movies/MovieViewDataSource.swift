@@ -9,6 +9,7 @@ import UIKit
 
 protocol MovieViewDataSourceDelegate: AnyObject {
     func fetchData(page: Int)
+    func selectedMovie(with movie: Movie)
 }
 
 final class MovieViewDataSource: UICollectionViewFlowLayout {
@@ -50,7 +51,7 @@ extension MovieViewDataSource: UICollectionViewDelegateFlowLayout {
         let paddingSpace = sectionInsets.left * CGFloat(itemsPerRow + 1)
         let availableWidth = collectionView.frame.width - paddingSpace
         let widthPerItem = availableWidth / CGFloat(itemsPerRow)
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        return CGSize(width: widthPerItem, height: widthPerItem + 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -69,10 +70,13 @@ extension MovieViewDataSource: UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GroupCollectionViewCell", for: indexPath) as? MovieCell else { return UICollectionViewCell() }
-
         
-        cell.downloadImage(model: movie[indexPath.item])
+        cell.configure(model: movie[indexPath.item])
         
         return cell
-      }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.selectedMovie(with: movie[indexPath.item])
+    }
 }

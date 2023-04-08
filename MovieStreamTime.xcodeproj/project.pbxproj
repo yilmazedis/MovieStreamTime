@@ -35,6 +35,8 @@
 		01702E5829E18F0D000F96B9 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5729E18F0D000F96B9 /* ImageDownloader.swift */; };
 		01702E5A29E18F42000F96B9 /* ManagerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5929E18F42000F96B9 /* ManagerCache.swift */; };
 		01702E5C29E1A1EA000F96B9 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5B29E1A1EA000F96B9 /* UIViewController+Ext.swift */; };
+		01702E5F29E20D18000F96B9 /* AnimatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5E29E20D18000F96B9 /* AnimatedLabel.swift */; };
+		01702E6129E2128F000F96B9 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6029E2128F000F96B9 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		01702E5729E18F0D000F96B9 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		01702E5929E18F42000F96B9 /* ManagerCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCache.swift; sourceTree = "<group>"; };
 		01702E5B29E1A1EA000F96B9 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		01702E5E29E20D18000F96B9 /* AnimatedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedLabel.swift; sourceTree = "<group>"; };
+		01702E6029E2128F000F96B9 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,7 @@
 		01702E2D29E0A751000F96B9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				01702E5D29E20D02000F96B9 /* CustomClasses */,
 				01702E3729E0A7FF000F96B9 /* Extension */,
 				01702E3229E0A7B2000F96B9 /* Enums */,
 				01702E2E29E0A75D000F96B9 /* Logger.swift */,
@@ -174,6 +179,7 @@
 		01702E3B29E0AB95000F96B9 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				01702E6229E212A2000F96B9 /* MovieDetail */,
 				01702E5329E18E17000F96B9 /* MovieCell.swift */,
 				01702E5129E18DA3000F96B9 /* MovieViewDataSource.swift */,
 				01702E1729E06D57000F96B9 /* MovieViewConroller.swift */,
@@ -195,6 +201,22 @@
 				01702E4929E0DDD2000F96B9 /* GenresRouter.swift */,
 			);
 			path = Genres;
+			sourceTree = "<group>";
+		};
+		01702E5D29E20D02000F96B9 /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				01702E5E29E20D18000F96B9 /* AnimatedLabel.swift */,
+			);
+			path = CustomClasses;
+			sourceTree = "<group>";
+		};
+		01702E6229E212A2000F96B9 /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				01702E6029E2128F000F96B9 /* MovieDetailViewController.swift */,
+			);
+			path = MovieDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +292,8 @@
 				01702E1829E06D57000F96B9 /* MovieViewConroller.swift in Sources */,
 				01702E5029E0EC73000F96B9 /* GenresCell.swift in Sources */,
 				01702E4A29E0DDD2000F96B9 /* GenresRouter.swift in Sources */,
+				01702E5F29E20D18000F96B9 /* AnimatedLabel.swift in Sources */,
+				01702E6129E2128F000F96B9 /* MovieDetailViewController.swift in Sources */,
 				01702E2F29E0A75D000F96B9 /* Logger.swift in Sources */,
 				01702E2C29E0A6EC000F96B9 /* Movie.swift in Sources */,
 				01702E3D29E0ABD0000F96B9 /* MovieInteractor.swift in Sources */,

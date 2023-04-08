@@ -7,15 +7,21 @@
 
 import UIKit
 
-class MovieCell: UICollectionViewCell {
+final class MovieCell: UICollectionViewCell {
 
-    private var currentPhotoID: String?
-    private var imageDownloader = ImageDownloader()
-
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
        let view = UIImageView()
         return view
     }()
+    
+    private lazy var movieTitle: UILabel = {
+        let view = UILabel()
+        view.textAlignment = .center
+        view.font = .systemFont(ofSize: 14, weight: .medium)
+        return view
+    }()
+    
+    private var imageDownloader = ImageDownloader()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,19 +37,26 @@ class MovieCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1).isActive = true
+        
+        contentView.addSubview(movieTitle)
+        movieTitle.translatesAutoresizingMaskIntoConstraints = false
+        movieTitle.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5).isActive = true
+        movieTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        movieTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     }
 
     override func prepareForReuse() {
-        currentPhotoID = nil
         imageView.backgroundColor = .clear
         imageView.image = nil
         imageDownloader.cancel()
     }
 
-    func downloadImage(model: Movie) {
+    func configure(model: Movie) {
+        
+        movieTitle.text = model.original_title
                 
         guard let url = URL(string: "https://image.tmdb.org/t/p/w200/\(model.poster_path)") else {
             return
