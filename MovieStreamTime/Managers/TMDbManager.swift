@@ -10,11 +10,22 @@ import Foundation
 class TMDbManager {
     
     static let shared = TMDbManager()
+    private let cache = ManagerCache.cache
     
     func fetch<T: Decodable>(with urlStr: String, completion: @escaping (Result<T, Error>) -> Void) {
         
         guard let url = URL(string: urlStr) else {
             Logger.log(what: K.ErrorMessage.url, about: .error)
+            return
+        }
+        
+        if let data = ManagerCache.imageData(for: url) {
+            do {
+                let result = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(result))
+            } catch {
+                completion(.failure(ManagerFail.decode))
+            }
             return
         }
         
@@ -39,6 +50,8 @@ class TMDbManager {
                 completion(.failure(ManagerFail.error))
                 return
             }
+            
+            ManagerCache.storeImageData(data: data, response: httpResponse, for: url)
 
             do {
                 let result = try JSONDecoder().decode(T.self, from: data)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyCell: UICollectionViewCell {
+class GenresCell: UICollectionViewCell {
     var viewController: UIViewController? {
         didSet {
             guard let viewController = viewController else { return }

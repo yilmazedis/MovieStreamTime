@@ -23,7 +23,7 @@ final class GenresViewConroller: UIViewController {
     
     lazy var pagingCollectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: getPagingCompositionalLayout())
-        view.register(MyCell.self, forCellWithReuseIdentifier: "PagingCollectionViewCell")
+        view.register(GenresCell.self, forCellWithReuseIdentifier: "PagingCollectionViewCell")
         return view
     }()
     
@@ -39,7 +39,7 @@ final class GenresViewConroller: UIViewController {
         
         pagingDataSource.itemSize = pagingCollectionView.bounds.size
         
-        setPagingCollectionViewLayout()
+        setCollectionViewLayout()
         
         interactor?.fetchData()
     }
@@ -70,7 +70,7 @@ final class GenresViewConroller: UIViewController {
     }
 
     
-    private func setPagingCollectionViewLayout() {
+    private func setCollectionViewLayout() {
         view.addSubview(pagingCollectionView)
         pagingCollectionView.translatesAutoresizingMaskIntoConstraints = false
         pagingCollectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -94,10 +94,8 @@ extension GenresViewConroller: GenresViewProtocol {
             self?.pagingDataSource.data = data
             
             for el in data {
-                guard let view = MovieRouter.start().entry else { return }
-                
+                guard let view = MovieRouter.start(id: el.id).entry else { return }
                 view.title = el.name
-                view.id = el.id
                 
                 self?.pagingDataSource.viewControllers.append(view)
             }

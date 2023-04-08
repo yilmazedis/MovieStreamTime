@@ -1,5 +1,5 @@
 //
-//  GenresViewDataSource.swift
+//  MovieViewDataSource.swift
 //  MovieStreamTime
 //
 //  Created by yilmaz on 8.04.2023.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class GenresViewDataSource: UICollectionViewFlowLayout {
+class MovieViewDataSource: UICollectionViewFlowLayout {
     
-    var data: [Genre] = []
+    var movie: [Movie] = []
     var viewControllers = [UIViewController]()
     
     override init() {
@@ -35,19 +35,21 @@ class GenresViewDataSource: UICollectionViewFlowLayout {
 }
 
 
-extension GenresViewDataSource: UICollectionViewDelegateFlowLayout {
+extension MovieViewDataSource: UICollectionViewDelegateFlowLayout {
     
 }
 
-extension GenresViewDataSource: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MovieViewDataSource: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        data.count
+        movie.count
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-          let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PagingCollectionViewCell", for: indexPath) as! GenresCell
-          cell.viewController = viewControllers[indexPath.item]
-          return cell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GroupCollectionViewCell", for: indexPath) as? MovieCell else { return UICollectionViewCell() }
+
+        
+        cell.downloadImage(model: movie[indexPath.item])
+        
+        return cell
       }
 }
