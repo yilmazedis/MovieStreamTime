@@ -11,7 +11,7 @@ class TMDbManager {
     
     static let shared = TMDbManager()
     
-    func fetchMovies(with urlStr: String, completion: @escaping (Result<[Movie], Error>) -> Void) {
+    func fetch<T: Decodable>(with urlStr: String, completion: @escaping (Result<T, Error>) -> Void) {
         
         guard let url = URL(string: urlStr) else {
             Logger.log(what: K.ErrorMessage.url, about: .error)
@@ -41,7 +41,7 @@ class TMDbManager {
             }
 
             do {
-                let result = try JSONDecoder().decode([Movie].self, from: data)
+                let result = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(result))
             } catch {
                 completion(.failure(ManagerFail.decode))

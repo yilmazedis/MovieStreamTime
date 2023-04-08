@@ -10,13 +10,13 @@ import Foundation
 protocol MoviePresenterProtocol: AnyObject {
     var view: ViewProtocol? { get set }
     
-    func dataFetched(data: [String])
+    func dataFetched(data: [Movie])
 }
 
 class MoviePresenter: MoviePresenterProtocol {
     weak var view: ViewProtocol?
 
-    func dataFetched(data: [String]) {
+    func dataFetched(data: [Movie]) {
         view?.updateData(data: data)
     }
 }
