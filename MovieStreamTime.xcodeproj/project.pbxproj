@@ -37,6 +37,7 @@
 		01702E6129E2128F000F96B9 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6029E2128F000F96B9 /* MovieDetailViewController.swift */; };
 		01702E6529E2C713000F96B9 /* UICollectionViewLayout+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6429E2C713000F96B9 /* UICollectionViewLayout+Ext.swift */; };
 		01702E6729E2CFA9000F96B9 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6629E2CFA9000F96B9 /* String+Ext.swift */; };
+		01702E6929E2F567000F96B9 /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6829E2F567000F96B9 /* Mutex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		01702E6029E2128F000F96B9 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		01702E6429E2C713000F96B9 /* UICollectionViewLayout+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Ext.swift"; sourceTree = "<group>"; };
 		01702E6629E2CFA9000F96B9 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		01702E6829E2F567000F96B9 /* Mutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mutex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				01702E2829E0A69A000F96B9 /* TMDbManager.swift */,
 				01702E5729E18F0D000F96B9 /* ImageDownloader.swift */,
 				01702E5929E18F42000F96B9 /* ManagerCache.swift */,
+				01702E6829E2F567000F96B9 /* Mutex.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				01702E1829E06D57000F96B9 /* MovieViewConroller.swift in Sources */,
 				01702E5029E0EC73000F96B9 /* GenresCell.swift in Sources */,
 				01702E4A29E0DDD2000F96B9 /* GenresRouter.swift in Sources */,
+				01702E6929E2F567000F96B9 /* Mutex.swift in Sources */,
 				01702E6129E2128F000F96B9 /* MovieDetailViewController.swift in Sources */,
 				01702E2F29E0A75D000F96B9 /* FastLogger.swift in Sources */,
 				01702E2C29E0A6EC000F96B9 /* Movie.swift in Sources */,

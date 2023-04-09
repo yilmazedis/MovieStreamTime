@@ -22,6 +22,7 @@ final class MovieViewConroller: UIViewController {
     
     // MARK: - Private
     private let movieDataSource = MovieViewDataSource()
+    private let mutex = Mutex()
 
     // MARK: - Private Lazy
     private lazy var groupCollectionView: UICollectionView = {
@@ -58,17 +59,22 @@ final class MovieViewConroller: UIViewController {
 extension MovieViewConroller: ViewProtocol {
     func updateData(data: [Movie]) {
         DispatchQueue.main.async { [weak self] in
-            let newItems = data
-            // Calculate the index paths of the new items based on the current count
-            guard let startIndex = self?.groupCollectionView.numberOfItems(inSection: 0) else { return }
-            let endIndex = startIndex + newItems.count - 1
-            let indexPaths = (startIndex...endIndex).map { IndexPath(item: $0, section: 0) }
+            
+            // If fetch calls so twice or trice while scrolling
+            // We must secure critical section
+            self?.mutex.sync {
+                let newItems = data
+                // Calculate the index paths of the new items based on the current count
+                guard let startIndex = self?.groupCollectionView.numberOfItems(inSection: 0) else { return }
+                let endIndex = startIndex + newItems.count - 1
+                let indexPaths = (startIndex...endIndex).map { IndexPath(item: $0, section: 0) }
 
-            self?.movieDataSource.movie.append(contentsOf: data)
-            // Insert the new items to the collection view
-            self?.groupCollectionView.performBatchUpdates({
-                self?.groupCollectionView.insertItems(at: indexPaths)
-            }, completion: nil)
+                self?.movieDataSource.movie.append(contentsOf: data)
+                // Insert the new items to the collection view
+                self?.groupCollectionView.performBatchUpdates({
+                    self?.groupCollectionView.insertItems(at: indexPaths)
+                }, completion: nil)
+            }
         }
     }
 }
