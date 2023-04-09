@@ -13,7 +13,7 @@ protocol MoviePresenterProtocol: AnyObject {
     func dataFetched(data: [Movie])
 }
 
-class MoviePresenter: MoviePresenterProtocol {
+final class MoviePresenter: MoviePresenterProtocol {
     weak var view: ViewProtocol?
 
     func dataFetched(data: [Movie]) {

@@ -13,7 +13,7 @@ protocol GenresPresenterProtocol: AnyObject {
     func dataFetched(data: [Genre])
 }
 
-class GenresPresenter: GenresPresenterProtocol {
+final class GenresPresenter: GenresPresenterProtocol {
     weak var view: GenresViewProtocol?
 
     func dataFetched(data: [Genre]) {

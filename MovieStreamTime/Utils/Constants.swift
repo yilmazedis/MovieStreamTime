@@ -10,48 +10,28 @@ import UIKit
 struct K {
     struct TMDB {
         static let url = "https://api.themoviedb.org/3/"
-        static let key = "68ca79afd1e1e5b9579ef55a2f064725"
-        static let posterUrl = "https://image.tmdb.org/t/p/original/"
+        static let movieCategory = "discover/movie"
+        static let listCategory = "genre/movie/list"
+        static let token = "3bb3e67969473d0cb4a48a0dd61af747"
+        static let posterUrl = "https://image.tmdb.org/t/p/w200/"
+        static let title = "Movies"
+        static let videoURL = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
     }
     
-    struct MainScreen {
-        static let cell = "mainScreenViewCell"
-        static let paginationAmount = 4
-        
-        static let headerHeight = CGFloat(300)
-        static let cellHeight = CGFloat(160)
-        
-        static let refreshAttribute = "Refreshing"
+    struct Genres {
+        static let cell = "PagingCollectionViewCell"
     }
     
-    struct DetailScreen {
-        static let titleFont = UIFont.systemFont(ofSize: 20)
-        static let descriptionFont = UIFont.systemFont(ofSize: 15)
-        static let imdbLineFont = UIFont.systemFont(ofSize: 13)
-        
-        static let rateLabelColorFrom = 3
-        static let rateLabelColorTo = 3
-        
-        static let rateOver = "/10"
-    }
-    
-    struct HeaderView {
-        static let titleFont = UIFont.systemFont(ofSize: 20, weight: .heavy)
-        static let descriptionFont = UIFont.systemFont(ofSize: 12, weight: .light)
-        
-        static let slideshowInterval = 5.0
-    }
-    
-    struct IMDb {
-        static let url = "https://www.imdb.com/title/"
-    }
-    
-    struct Color {
-        static let overTenRateColor = 0xADB5BD
+    struct Movies {
+        static let cell = "GroupCollectionViewCell"
     }
     
     struct Date {
         static let format = "yyyy-MM-dd HH:mm:ss"
+    }
+    
+    struct Cache {
+        static let name = "MovieCache"
     }
     
     struct ErrorMessage {
@@ -67,5 +47,11 @@ struct K {
         static let paginationLength = "Pagination length is equal to fetched data length"
         static let refreshPage = "Refresh page"
         static let api = "Fetching data is successed"
+        static let noGenre = "There are no Genre"
+    }
+    
+    struct DebugMessage {
+        static let fromCache = "Got From Cache"
+        static let fromURL = "Got From URL"
     }
 }

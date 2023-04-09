@@ -13,7 +13,7 @@ protocol GenresRouterProtocol {
     static func start() -> GenresRouterProtocol
 }
 
-class GenresRouter: GenresRouterProtocol {
+final class GenresRouter: GenresRouterProtocol {
     var entry: GenresEntryPoint?
     
     static func start() -> GenresRouterProtocol {

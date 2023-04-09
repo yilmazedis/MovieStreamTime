@@ -16,22 +16,26 @@ protocol ViewProtocol: AnyObject {
     func updateData(data: [Movie])
 }
 
-class MovieViewConroller: UIViewController {
+final class MovieViewConroller: UIViewController {
+    // MARK: - GenresInteractorProtocol
+    var interactor: MovieInteractorProtocol?
     
-    lazy var groupCollectionView: UICollectionView = {
+    // MARK: - Private
+    private let movieDataSource = MovieViewDataSource()
+    private let mutex = Mutex()
+
+    // MARK: - Private Lazy
+    private lazy var groupCollectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        view.register(MovieCell.self, forCellWithReuseIdentifier: "GroupCollectionViewCell")
+        view.register(MovieCell.self, forCellWithReuseIdentifier: K.Movies.cell)
         return view
     }()
     
-    var interactor: MovieInteractorProtocol?
+    // MARK: - Var
     var id = 0
-    private let movieDataSource = MovieViewDataSource()
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+        super.viewDidLoad()        
         interactor?.fetchData(id: id, page: 1)
         
         groupCollectionView.delegate = movieDataSource
@@ -54,23 +58,23 @@ class MovieViewConroller: UIViewController {
 
 extension MovieViewConroller: ViewProtocol {
     func updateData(data: [Movie]) {
-        print(data)
-        
         DispatchQueue.main.async { [weak self] in
             
-            
-            let newItems = data
+            // If fetch calls so twice or trice while scrolling
+            // We must secure critical section
+            self?.mutex.sync {
+                let newItems = data
+                // Calculate the index paths of the new items based on the current count
+                guard let startIndex = self?.groupCollectionView.numberOfItems(inSection: 0) else { return }
+                let endIndex = startIndex + newItems.count - 1
+                let indexPaths = (startIndex...endIndex).map { IndexPath(item: $0, section: 0) }
 
-            // Calculate the index paths of the new items based on the current count
-            guard let startIndex = self?.groupCollectionView.numberOfItems(inSection: 0) else { return }
-            let endIndex = startIndex + newItems.count - 1
-            let indexPaths = (startIndex...endIndex).map { IndexPath(item: $0, section: 0) }
-
-            self?.movieDataSource.movie.append(contentsOf: data)
-            // Insert the new items to the collection view
-            self?.groupCollectionView.performBatchUpdates({
-                self?.groupCollectionView.insertItems(at: indexPaths)
-            }, completion: nil)
+                self?.movieDataSource.movie.append(contentsOf: data)
+                // Insert the new items to the collection view
+                self?.groupCollectionView.performBatchUpdates({
+                    self?.groupCollectionView.insertItems(at: indexPaths)
+                }, completion: nil)
+            }
         }
     }
 }

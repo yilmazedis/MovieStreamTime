@@ -13,19 +13,32 @@ protocol MovieInteractorProtocol {
     func fetchData(id: Int, page: Int)
 }
 
-class MovieInteractor: MovieInteractorProtocol {
+final class MovieInteractor: MovieInteractorProtocol {
     var presenter: MoviePresenterProtocol?
-
+    
     func fetchData(id: Int, page: Int) {
-        // fetch data from an external service
-        TMDbManager.shared.fetch(with: "https://api.themoviedb.org/3/discover/movie?api_key=3bb3e67969473d0cb4a48a0dd61af747&sort_by=popularity.desc&include_adult=false&include_video=false&page=\(page)&with_genres=\(id)") { [weak self] (result: Result<Movies, Error>) in
-                        
+        
+        let queries = [
+            "api_key": K.TMDB.token,
+            "sort_by": "popularity.desc",
+            "include_adult": "false",
+            "include_video": "false",
+            "language": "en-US",
+            "page": String(page),
+            "with_genres": String(id)
+        ]
+        
+        let urlStr = K.TMDB.url + K.TMDB.movieCategory
+        let url = urlStr.composeURL(queries: queries)
+        
+        TMDbManager.shared.fetch(with: url) { [weak self] (result: Result<Movies, Error>) in
+            
             switch result {
             case .success(let movies):
                 self?.presenter?.dataFetched(data: movies.results)
                 
             case .failure(let error):
-                Logger.log(what: "Fetching Movies Failure", over: error)
+                FastLogger.log(what: "Fetching Movies Failure", over: error)
             }
         }
     }

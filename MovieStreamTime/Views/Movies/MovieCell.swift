@@ -56,28 +56,10 @@ final class MovieCell: UICollectionViewCell {
 
     func configure(model: Movie) {
         
-        movieTitle.text = model.original_title
+        movieTitle.text = model.originalTitle
                 
-        guard let url = URL(string: "https://image.tmdb.org/t/p/w200/\(model.poster_path)") else {
-            return
-        }
+        guard let url = URL(string: "\(K.TMDB.posterUrl)\(model.posterPath)") else { return }
         
-        imageDownloader.downloadPhoto(with: url, completion: { [weak self] (image, isCached) in
-            guard let self = self else { return }
-            
-            if isCached {
-                DispatchQueue.main.async {
-                    self.imageView.image = image
-                }
-                print("got from cache")
-            } else {
-                print("got from URL")
-                UIView.transition(with: self, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-                    DispatchQueue.main.async {
-                        self.imageView.image = image
-                    }
-                }, completion: nil)
-            }
-        })
+        imageView.networkImage(with: imageDownloader, url: url)
     }
 }

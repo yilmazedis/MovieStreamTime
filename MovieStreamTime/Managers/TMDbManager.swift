@@ -7,15 +7,15 @@
 
 import Foundation
 
-class TMDbManager {
+final class TMDbManager {
     
     static let shared = TMDbManager()
     private let cache = ManagerCache.cache
     
-    func fetch<T: Decodable>(with urlStr: String, completion: @escaping (Result<T, Error>) -> Void) {
+    func fetch<T: Decodable>(with url: URL?, completion: @escaping (Result<T, Error>) -> Void) {
         
-        guard let url = URL(string: urlStr) else {
-            Logger.log(what: K.ErrorMessage.url, about: .error)
+        guard let url = url else {
+            FastLogger.log(what: K.ErrorMessage.url, about: .error)
             return
         }
         
@@ -51,9 +51,13 @@ class TMDbManager {
                 return
             }
             
+            FastLogger.log(what: K.InfoMessage.api, about: .info)
+            
             ManagerCache.storeImageData(data: data, response: httpResponse, for: url)
 
             do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let result = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(result))
             } catch {

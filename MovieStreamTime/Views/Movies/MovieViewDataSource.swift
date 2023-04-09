@@ -32,16 +32,17 @@ final class MovieViewDataSource: UICollectionViewFlowLayout {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // YOu can use others, up to you
+    // You can use others, up to you
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         // Check if the user has scrolled to the bottom of the collection view
         let contentHeight = scrollView.contentSize.height
         let yOffset = scrollView.contentOffset.y
         let height = scrollView.frame.height
-        if yOffset + height > contentHeight - 300 {
+        if yOffset + height > contentHeight - 400 {
             // Increment the page number and make another network call to fetch the data
             currentPage += 1
             delegate?.fetchData(page: currentPage)
+            FastLogger.log(what: K.InfoMessage.paginationLength, about: .info)            
         }
     }
 }
@@ -69,7 +70,7 @@ extension MovieViewDataSource: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GroupCollectionViewCell", for: indexPath) as? MovieCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.Movies.cell, for: indexPath) as? MovieCell else { return UICollectionViewCell() }
         
         cell.configure(model: movie[indexPath.item])
         

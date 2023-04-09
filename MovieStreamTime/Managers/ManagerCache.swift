@@ -7,9 +7,9 @@
 
 import Foundation
 
-class ManagerCache {
+final class ManagerCache {
     static let cache: URLCache = {
-        let diskPath = "myCache"
+        let diskPath = K.Cache.name
 
         if #available(iOS 13.0, *) {
             let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
