@@ -17,8 +17,18 @@ struct Logger {
         let date = Date()
         let formatedDate = date.getFormattedDate(format: K.Date.format)
         let fileName = "\(file)".components(separatedBy:"/").last ?? ""
-
-        print("Date: \(formatedDate), Line: \(line), \(fileName): \(message) [.\(type)]")
+        
+        var icon = ""
+        switch type {
+        case .error:
+            icon = "\u{1F6A8}"
+        case .info:
+            icon = "\u{1F481}"
+        case .debug:
+            icon = "\u{1FAB2}"
+        }
+        
+        print("\(icon) Date: \(formatedDate), Line: \(line), \(fileName): \u{1F449} \(message) [.\(type)]")
     }
 
     static func log(at line: UInt = #line,
@@ -30,6 +40,7 @@ struct Logger {
         let formatedDate = date.getFormattedDate(format: K.Date.format)
         let fileName = "\(file)".components(separatedBy:"/").last ?? ""
 
-        print("Date: \(formatedDate), Line: \(line), \(fileName): \(message) - \(error) [.\(LogType.error)]")
+        let icon = "\u{1F6A8}"
+        print("\(icon) Date: \(formatedDate), Line: \(line), \(fileName): \u{1F449} \(message) - \(error) [.\(LogType.error)]")
     }
 }

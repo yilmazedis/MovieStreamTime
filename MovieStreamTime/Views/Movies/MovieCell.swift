@@ -58,7 +58,7 @@ final class MovieCell: UICollectionViewCell {
         
         movieTitle.text = model.original_title
                 
-        guard let url = URL(string: "https://image.tmdb.org/t/p/w200/\(model.poster_path)") else {
+        guard let url = URL(string: "\(K.TMDB.posterUrl)\(model.poster_path)") else {
             return
         }
         
@@ -66,12 +66,12 @@ final class MovieCell: UICollectionViewCell {
             guard let self = self else { return }
             
             if isCached {
+                Logger.log(what: K.DebugMessage.fromCache, about: .info)
                 DispatchQueue.main.async {
                     self.imageView.image = image
                 }
-                print("got from cache")
             } else {
-                print("got from URL")
+                Logger.log(what: K.DebugMessage.fromURL, about: .info)
                 UIView.transition(with: self, duration: 0.25, options: [.transitionCrossDissolve], animations: {
                     DispatchQueue.main.async {
                         self.imageView.image = image

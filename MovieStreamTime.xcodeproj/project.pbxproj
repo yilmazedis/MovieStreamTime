@@ -35,8 +35,9 @@
 		01702E5829E18F0D000F96B9 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5729E18F0D000F96B9 /* ImageDownloader.swift */; };
 		01702E5A29E18F42000F96B9 /* ManagerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5929E18F42000F96B9 /* ManagerCache.swift */; };
 		01702E5C29E1A1EA000F96B9 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5B29E1A1EA000F96B9 /* UIViewController+Ext.swift */; };
-		01702E5F29E20D18000F96B9 /* AnimatedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E5E29E20D18000F96B9 /* AnimatedLabel.swift */; };
 		01702E6129E2128F000F96B9 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6029E2128F000F96B9 /* MovieDetailViewController.swift */; };
+		01702E6529E2C713000F96B9 /* UICollectionViewLayout+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6429E2C713000F96B9 /* UICollectionViewLayout+Ext.swift */; };
+		01702E6729E2CFA9000F96B9 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6629E2CFA9000F96B9 /* String+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,8 +71,9 @@
 		01702E5729E18F0D000F96B9 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		01702E5929E18F42000F96B9 /* ManagerCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCache.swift; sourceTree = "<group>"; };
 		01702E5B29E1A1EA000F96B9 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
-		01702E5E29E20D18000F96B9 /* AnimatedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedLabel.swift; sourceTree = "<group>"; };
 		01702E6029E2128F000F96B9 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		01702E6429E2C713000F96B9 /* UICollectionViewLayout+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Ext.swift"; sourceTree = "<group>"; };
+		01702E6629E2CFA9000F96B9 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +141,6 @@
 		01702E2D29E0A751000F96B9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				01702E5D29E20D02000F96B9 /* CustomClasses */,
 				01702E3729E0A7FF000F96B9 /* Extension */,
 				01702E3229E0A7B2000F96B9 /* Enums */,
 				01702E2E29E0A75D000F96B9 /* Logger.swift */,
@@ -163,6 +164,8 @@
 				01702E3829E0A81E000F96B9 /* Date+Ext.swift */,
 				01702E5529E18EF2000F96B9 /* UIImage+Preload.swift */,
 				01702E5B29E1A1EA000F96B9 /* UIViewController+Ext.swift */,
+				01702E6429E2C713000F96B9 /* UICollectionViewLayout+Ext.swift */,
+				01702E6629E2CFA9000F96B9 /* String+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -201,14 +204,6 @@
 				01702E4929E0DDD2000F96B9 /* GenresRouter.swift */,
 			);
 			path = Genres;
-			sourceTree = "<group>";
-		};
-		01702E5D29E20D02000F96B9 /* CustomClasses */ = {
-			isa = PBXGroup;
-			children = (
-				01702E5E29E20D18000F96B9 /* AnimatedLabel.swift */,
-			);
-			path = CustomClasses;
 			sourceTree = "<group>";
 		};
 		01702E6229E212A2000F96B9 /* MovieDetail */ = {
@@ -292,7 +287,6 @@
 				01702E1829E06D57000F96B9 /* MovieViewConroller.swift in Sources */,
 				01702E5029E0EC73000F96B9 /* GenresCell.swift in Sources */,
 				01702E4A29E0DDD2000F96B9 /* GenresRouter.swift in Sources */,
-				01702E5F29E20D18000F96B9 /* AnimatedLabel.swift in Sources */,
 				01702E6129E2128F000F96B9 /* MovieDetailViewController.swift in Sources */,
 				01702E2F29E0A75D000F96B9 /* Logger.swift in Sources */,
 				01702E2C29E0A6EC000F96B9 /* Movie.swift in Sources */,
@@ -301,6 +295,7 @@
 				01702E5A29E18F42000F96B9 /* ManagerCache.swift in Sources */,
 				01702E4E29E0EBBC000F96B9 /* GenresViewDataSource.swift in Sources */,
 				01702E4629E0DDBF000F96B9 /* GenresInteractor.swift in Sources */,
+				01702E6729E2CFA9000F96B9 /* String+Ext.swift in Sources */,
 				01702E4129E0AD4D000F96B9 /* MovieRouter.swift in Sources */,
 				01702E5829E18F0D000F96B9 /* ImageDownloader.swift in Sources */,
 				01702E3629E0A7DB000F96B9 /* ManagerFail.swift in Sources */,
@@ -308,6 +303,7 @@
 				01702E5C29E1A1EA000F96B9 /* UIViewController+Ext.swift in Sources */,
 				01702E3429E0A7C6000F96B9 /* LogType.swift in Sources */,
 				01702E3F29E0ABDC000F96B9 /* MoviePresenter.swift in Sources */,
+				01702E6529E2C713000F96B9 /* UICollectionViewLayout+Ext.swift in Sources */,
 				01702E5429E18E17000F96B9 /* MovieCell.swift in Sources */,
 				01702E3129E0A777000F96B9 /* Constants.swift in Sources */,
 				01702E4429E0DDAD000F96B9 /* GenresViewController.swift in Sources */,

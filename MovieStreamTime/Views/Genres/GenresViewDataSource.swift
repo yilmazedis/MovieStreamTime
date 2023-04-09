@@ -11,7 +11,7 @@ protocol GenresViewDataSourceDelegate: AnyObject {
     func setTitle(name: String)
 }
 
-class GenresViewDataSource: UICollectionViewFlowLayout {
+final class GenresViewDataSource: UICollectionViewFlowLayout {
     
     var data: [Genre] = []
     var viewControllers = [UIViewController]()
@@ -33,12 +33,15 @@ extension GenresViewDataSource: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PagingCollectionViewCell", for: indexPath) as! GenresCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.Genres.cell, for: indexPath) as? GenresCell else {
+            return UICollectionViewCell()
+        }
+        
         cell.viewController = viewControllers[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        delegate?.setTitle(name: viewControllers[indexPath.item].title ?? "Movies")
+        delegate?.setTitle(name: viewControllers[indexPath.item].title ?? K.TMDB.title)
     }
 }

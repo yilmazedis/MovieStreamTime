@@ -13,12 +13,20 @@ protocol GenresInteractorProtocol {
     func fetchData()
 }
 
-class GenresInteractor: GenresInteractorProtocol {
+final class GenresInteractor: GenresInteractorProtocol {
     var presenter: GenresPresenterProtocol?
 
     func fetchData() {
-        // fetch data from an external service
-        TMDbManager.shared.fetch(with: "https://api.themoviedb.org/3/genre/movie/list?api_key=3bb3e67969473d0cb4a48a0dd61af747&language=en-US") { [weak self] (result: Result<Genres, Error>) in
+            
+       let queries = [
+            "api_key": K.TMDB.token,
+            "language": "en-US"
+       ]
+        
+        let urlStr = K.TMDB.url + K.TMDB.listCategory
+        let url = urlStr.composeURL(queries: queries)
+        
+        TMDbManager.shared.fetch(with: url) { [weak self] (result: Result<Genres, Error>) in
             switch result {
             case .success(let genres):
                 

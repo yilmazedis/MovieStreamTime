@@ -17,62 +17,34 @@ protocol GenresViewProtocol: AnyObject {
 
 final class GenresViewConroller: UIViewController {
     
+    // MARK: - GenresInteractorProtocol
     var interactor: GenresInteractorProtocol?
-    var data: [Genre] = []
-    var viewControllers = [UIViewController]()
     
-    lazy var pagingCollectionView: UICollectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: getPagingCompositionalLayout())
-        view.register(GenresCell.self, forCellWithReuseIdentifier: "PagingCollectionViewCell")
+    // MARK: - Private
+    private var data: [Genre] = []
+    private var viewControllers = [UIViewController]()
+    private let pagingDataSource = GenresViewDataSource()
+    
+    // MARK: - Private Lazy
+    private lazy var pagingCollectionView: UICollectionView = {
+        let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.carouselLayout())
+        view.register(GenresCell.self, forCellWithReuseIdentifier: K.Genres.cell)
         return view
     }()
-    
-    private let pagingDataSource = GenresViewDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
-        // Do any additional setup after loading the view.
         
         pagingCollectionView.delegate = pagingDataSource
         pagingCollectionView.dataSource = pagingDataSource
         pagingDataSource.delegate = self
-        
-        pagingDataSource.itemSize = pagingCollectionView.bounds.size
-        
+                
         setCollectionViewLayout()
         
         interactor?.fetchData()
         
-        configureNavigationBar(largeTitleColor: .white, backgoundColor: .systemBlue, tintColor: .white, title: "Yilmaz", preferredLargeTitle: false)
-
+        configureNavigationBar(largeTitleColor: .white, backgoundColor: .systemBlue, tintColor: .white, title: K.TMDB.title, preferredLargeTitle: false)
     }
-    
-    private func getPagingCompositionalLayout() -> UICollectionViewCompositionalLayout {
-        // --------- Carousel ---------                                           // make fraction 1 if needs no whitespace
-        let carouselItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                                                     heightDimension: .fractionalHeight(1)))
-        carouselItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-
-        let carouselGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)), subitems: [carouselItem])
-
-        let carouselSection = NSCollectionLayoutSection(group: carouselGroup)
-        carouselSection.orthogonalScrollingBehavior = .groupPagingCentered
-        
-//        // animation
-//        carouselSection.visibleItemsInvalidationHandler = { (items, offset, environment) in
-//            items.forEach { item in
-//                let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
-//                let minScale: CGFloat = 0.7
-//                let maxScale: CGFloat = 1.1
-//                let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
-//                item.transform = CGAffineTransform(scaleX: scale, y: scale)
-//            }
-//        }
-        let layout = UICollectionViewCompositionalLayout(section: carouselSection)
-        return layout
-    }
-
     
     private func setCollectionViewLayout() {
         view.addSubview(pagingCollectionView)
@@ -89,12 +61,11 @@ extension GenresViewConroller: GenresViewProtocol {
         print(data)
         
         guard !data.isEmpty else {
-            Logger.log(what: "There are no Genre", about: .info)
+            Logger.log(what: K.InfoMessage.noGenre, about: .info)
             return
         }
     
         DispatchQueue.main.async { [weak self] in
-            
             self?.pagingDataSource.data = data
             
             for el in data {
@@ -103,7 +74,6 @@ extension GenresViewConroller: GenresViewProtocol {
                 
                 self?.pagingDataSource.viewControllers.append(view)
             }
-            
             self?.pagingCollectionView.reloadData()
         }
     }

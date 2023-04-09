@@ -13,7 +13,7 @@ protocol MovieRouterProtocol {
     static func start(id: Int) -> MovieRouterProtocol
 }
 
-class MovieRouter: MovieRouterProtocol {
+final class MovieRouter: MovieRouterProtocol {
     var entry: MovieEntryPoint?
     
     static func start(id: Int) -> MovieRouterProtocol {

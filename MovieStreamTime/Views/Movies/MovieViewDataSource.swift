@@ -42,6 +42,7 @@ final class MovieViewDataSource: UICollectionViewFlowLayout {
             // Increment the page number and make another network call to fetch the data
             currentPage += 1
             delegate?.fetchData(page: currentPage)
+            Logger.log(what: K.InfoMessage.paginationLength, about: .info)
         }
     }
 }
@@ -69,7 +70,7 @@ extension MovieViewDataSource: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GroupCollectionViewCell", for: indexPath) as? MovieCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.Movies.cell, for: indexPath) as? MovieCell else { return UICollectionViewCell() }
         
         cell.configure(model: movie[indexPath.item])
         

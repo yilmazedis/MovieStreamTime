@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImageDownloader {
+final class ImageDownloader {
 
     private var imageDataTask: URLSessionDataTask?
     private let cache = ManagerCache.cache
