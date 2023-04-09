@@ -11,6 +11,7 @@ typealias MovieEntryPoint = ViewProtocol & UIViewController
 
 protocol ViewProtocol: AnyObject {
     var interactor: MovieInteractorProtocol? { get set }
+    var router: MovieRouterProtocol? { get set }
     var id: Int { get set }
     
     func updateData(data: [Movie])
@@ -19,6 +20,7 @@ protocol ViewProtocol: AnyObject {
 final class MovieViewConroller: UIViewController {
     // MARK: - GenresInteractorProtocol
     var interactor: MovieInteractorProtocol?
+    var router: MovieRouterProtocol?
     
     // MARK: - Private
     private let movieDataSource = MovieViewDataSource()
@@ -85,11 +87,6 @@ extension MovieViewConroller: MovieViewDataSourceDelegate {
     }
     
     func selectedMovie(with movie: Movie) {
-        let vc = MovieDetailViewController(movie: movie)
-        
-        let navVc = UINavigationController(rootViewController: vc)
-        navVc.modalPresentationStyle = .fullScreen
-        
-        show(navVc, sender: self)
+        router?.showMovieDetailViewController(movie: movie)
     }
 }
