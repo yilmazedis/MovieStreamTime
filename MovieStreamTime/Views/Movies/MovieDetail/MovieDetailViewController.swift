@@ -59,7 +59,7 @@ final class MovieDetailViewController: UIViewController {
         configureNavigationBar(largeTitleColor: .label,
                                backgoundColor: .systemBlue,
                                tintColor: .label,
-                               title: movie.original_title,
+                               title: movie.originalTitle,
                                preferredLargeTitle: false)
         
         let backBarButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonTapped))
@@ -71,7 +71,7 @@ final class MovieDetailViewController: UIViewController {
     }
     
     private func setLabelsContent() {
-        if let releaseDate = movie.release_date {
+        if let releaseDate = movie.releaseDate {
             movieReleaseDate.text = "Release Date: " + releaseDate
         }
         movieOverview.text = movie.overview

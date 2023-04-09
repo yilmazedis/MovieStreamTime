@@ -56,6 +56,8 @@ final class TMDbManager {
             ManagerCache.storeImageData(data: data, response: httpResponse, for: url)
 
             do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let result = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(result))
             } catch {

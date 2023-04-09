@@ -56,9 +56,9 @@ final class MovieCell: UICollectionViewCell {
 
     func configure(model: Movie) {
         
-        movieTitle.text = model.original_title
+        movieTitle.text = model.originalTitle
                 
-        guard let url = URL(string: "\(K.TMDB.posterUrl)\(model.poster_path)") else { return }
+        guard let url = URL(string: "\(K.TMDB.posterUrl)\(model.posterPath)") else { return }
         
         imageView.networkImage(with: imageDownloader, url: url)
     }
