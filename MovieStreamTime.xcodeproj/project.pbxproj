@@ -14,9 +14,8 @@
 		01702E2029E06D5B000F96B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01702E1E29E06D5B000F96B9 /* LaunchScreen.storyboard */; };
 		01702E2929E0A69A000F96B9 /* TMDbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E2829E0A69A000F96B9 /* TMDbManager.swift */; };
 		01702E2C29E0A6EC000F96B9 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E2B29E0A6EC000F96B9 /* Movie.swift */; };
-		01702E2F29E0A75D000F96B9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E2E29E0A75D000F96B9 /* Logger.swift */; };
+		01702E2F29E0A75D000F96B9 /* FastLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E2E29E0A75D000F96B9 /* FastLogger.swift */; };
 		01702E3129E0A777000F96B9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E3029E0A777000F96B9 /* Constants.swift */; };
-		01702E3429E0A7C6000F96B9 /* LogType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E3329E0A7C6000F96B9 /* LogType.swift */; };
 		01702E3629E0A7DB000F96B9 /* ManagerFail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E3529E0A7DB000F96B9 /* ManagerFail.swift */; };
 		01702E3929E0A81E000F96B9 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E3829E0A81E000F96B9 /* Date+Ext.swift */; };
 		01702E3D29E0ABD0000F96B9 /* MovieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E3C29E0ABD0000F96B9 /* MovieInteractor.swift */; };
@@ -50,9 +49,8 @@
 		01702E2129E06D5B000F96B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01702E2829E0A69A000F96B9 /* TMDbManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbManager.swift; sourceTree = "<group>"; };
 		01702E2B29E0A6EC000F96B9 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		01702E2E29E0A75D000F96B9 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		01702E2E29E0A75D000F96B9 /* FastLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastLogger.swift; sourceTree = "<group>"; };
 		01702E3029E0A777000F96B9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		01702E3329E0A7C6000F96B9 /* LogType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogType.swift; sourceTree = "<group>"; };
 		01702E3529E0A7DB000F96B9 /* ManagerFail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerFail.swift; sourceTree = "<group>"; };
 		01702E3829E0A81E000F96B9 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		01702E3C29E0ABD0000F96B9 /* MovieInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInteractor.swift; sourceTree = "<group>"; };
@@ -143,7 +141,7 @@
 			children = (
 				01702E3729E0A7FF000F96B9 /* Extension */,
 				01702E3229E0A7B2000F96B9 /* Enums */,
-				01702E2E29E0A75D000F96B9 /* Logger.swift */,
+				01702E2E29E0A75D000F96B9 /* FastLogger.swift */,
 				01702E3029E0A777000F96B9 /* Constants.swift */,
 			);
 			path = Utils;
@@ -152,7 +150,6 @@
 		01702E3229E0A7B2000F96B9 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				01702E3329E0A7C6000F96B9 /* LogType.swift */,
 				01702E3529E0A7DB000F96B9 /* ManagerFail.swift */,
 			);
 			path = Enums;
@@ -288,7 +285,7 @@
 				01702E5029E0EC73000F96B9 /* GenresCell.swift in Sources */,
 				01702E4A29E0DDD2000F96B9 /* GenresRouter.swift in Sources */,
 				01702E6129E2128F000F96B9 /* MovieDetailViewController.swift in Sources */,
-				01702E2F29E0A75D000F96B9 /* Logger.swift in Sources */,
+				01702E2F29E0A75D000F96B9 /* FastLogger.swift in Sources */,
 				01702E2C29E0A6EC000F96B9 /* Movie.swift in Sources */,
 				01702E3D29E0ABD0000F96B9 /* MovieInteractor.swift in Sources */,
 				01702E1429E06D57000F96B9 /* AppDelegate.swift in Sources */,
@@ -301,7 +298,6 @@
 				01702E3629E0A7DB000F96B9 /* ManagerFail.swift in Sources */,
 				01702E4C29E0DEB0000F96B9 /* Genre.swift in Sources */,
 				01702E5C29E1A1EA000F96B9 /* UIViewController+Ext.swift in Sources */,
-				01702E3429E0A7C6000F96B9 /* LogType.swift in Sources */,
 				01702E3F29E0ABDC000F96B9 /* MoviePresenter.swift in Sources */,
 				01702E6529E2C713000F96B9 /* UICollectionViewLayout+Ext.swift in Sources */,
 				01702E5429E18E17000F96B9 /* MovieCell.swift in Sources */,

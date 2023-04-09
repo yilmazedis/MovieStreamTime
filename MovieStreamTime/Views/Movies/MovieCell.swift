@@ -66,12 +66,12 @@ final class MovieCell: UICollectionViewCell {
             guard let self = self else { return }
             
             if isCached {
-                Logger.log(what: K.DebugMessage.fromCache, about: .info)
+                FastLogger.log(what: K.DebugMessage.fromCache, about: .info)
                 DispatchQueue.main.async {
                     self.imageView.image = image
                 }
             } else {
-                Logger.log(what: K.DebugMessage.fromURL, about: .info)
+                FastLogger.log(what: K.DebugMessage.fromURL, about: .info)
                 UIView.transition(with: self, duration: 0.25, options: [.transitionCrossDissolve], animations: {
                     DispatchQueue.main.async {
                         self.imageView.image = image

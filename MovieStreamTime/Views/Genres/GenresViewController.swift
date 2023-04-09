@@ -61,7 +61,7 @@ extension GenresViewConroller: GenresViewProtocol {
         print(data)
         
         guard !data.isEmpty else {
-            Logger.log(what: K.InfoMessage.noGenre, about: .info)
+            FastLogger.log(what: K.InfoMessage.noGenre, about: .info)
             return
         }
     

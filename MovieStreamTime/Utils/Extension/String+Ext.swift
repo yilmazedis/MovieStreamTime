@@ -11,7 +11,7 @@ extension String {
     func composeURL(queries: [String: String]) -> URL? {
         guard let componentsUrl = URL.init(string: self),
               var components = URLComponents.init(url: componentsUrl, resolvingAgainstBaseURL: false) else {
-            Logger.log(what: K.ErrorMessage.url, about: .error)
+            FastLogger.log(what: K.ErrorMessage.url, about: .error)
             return nil
         }
         

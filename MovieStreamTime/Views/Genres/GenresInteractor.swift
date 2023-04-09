@@ -15,13 +15,13 @@ protocol GenresInteractorProtocol {
 
 final class GenresInteractor: GenresInteractorProtocol {
     var presenter: GenresPresenterProtocol?
-
+    
     func fetchData() {
-            
-       let queries = [
+        
+        let queries = [
             "api_key": K.TMDB.token,
             "language": "en-US"
-       ]
+        ]
         
         let urlStr = K.TMDB.url + K.TMDB.listCategory
         let url = urlStr.composeURL(queries: queries)
@@ -33,7 +33,7 @@ final class GenresInteractor: GenresInteractorProtocol {
                 self?.presenter?.dataFetched(data: genres.genres)
                 
             case .failure(let error):
-                Logger.log(what: "Fetching Genress Failure", over: error)
+                FastLogger.log(what: "Fetching Genress Failure", over: error)
             }
         }
     }

@@ -15,7 +15,7 @@ final class TMDbManager {
     func fetch<T: Decodable>(with url: URL?, completion: @escaping (Result<T, Error>) -> Void) {
         
         guard let url = url else {
-            Logger.log(what: K.ErrorMessage.url, about: .error)
+            FastLogger.log(what: K.ErrorMessage.url, about: .error)
             return
         }
         
@@ -51,7 +51,7 @@ final class TMDbManager {
                 return
             }
             
-            Logger.log(what: K.InfoMessage.api, about: .info)
+            FastLogger.log(what: K.InfoMessage.api, about: .info)
             
             ManagerCache.storeImageData(data: data, response: httpResponse, for: url)
 

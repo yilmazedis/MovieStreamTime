@@ -42,7 +42,7 @@ final class MovieViewDataSource: UICollectionViewFlowLayout {
             // Increment the page number and make another network call to fetch the data
             currentPage += 1
             delegate?.fetchData(page: currentPage)
-            Logger.log(what: K.InfoMessage.paginationLength, about: .info)
+            FastLogger.log(what: K.InfoMessage.paginationLength, about: .info)
         }
     }
 }
