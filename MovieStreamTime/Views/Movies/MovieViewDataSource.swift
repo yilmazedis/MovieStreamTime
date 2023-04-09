@@ -38,7 +38,7 @@ final class MovieViewDataSource: UICollectionViewFlowLayout {
         let contentHeight = scrollView.contentSize.height
         let yOffset = scrollView.contentOffset.y
         let height = scrollView.frame.height
-        if yOffset + height > contentHeight - 150 {
+        if yOffset + height > contentHeight - 400 {
             // Increment the page number and make another network call to fetch the data
             currentPage += 1
             delegate?.fetchData(page: currentPage)

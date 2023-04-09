@@ -58,26 +58,8 @@ final class MovieCell: UICollectionViewCell {
         
         movieTitle.text = model.original_title
                 
-        guard let url = URL(string: "\(K.TMDB.posterUrl)\(model.poster_path)") else {
-            return
-        }
+        guard let url = URL(string: "\(K.TMDB.posterUrl)\(model.poster_path)") else { return }
         
-        imageDownloader.downloadPhoto(with: url, completion: { [weak self] (image, isCached) in
-            guard let self = self else { return }
-            
-            if isCached {
-                FastLogger.log(what: K.DebugMessage.fromCache, about: .info)
-                DispatchQueue.main.async {
-                    self.imageView.image = image
-                }
-            } else {
-                FastLogger.log(what: K.DebugMessage.fromURL, about: .info)
-                UIView.transition(with: self, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-                    DispatchQueue.main.async {
-                        self.imageView.image = image
-                    }
-                }, completion: nil)
-            }
-        })
+        imageView.networkImage(with: imageDownloader, url: url)
     }
 }

@@ -38,6 +38,7 @@
 		01702E6529E2C713000F96B9 /* UICollectionViewLayout+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6429E2C713000F96B9 /* UICollectionViewLayout+Ext.swift */; };
 		01702E6729E2CFA9000F96B9 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6629E2CFA9000F96B9 /* String+Ext.swift */; };
 		01702E6929E2F567000F96B9 /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6829E2F567000F96B9 /* Mutex.swift */; };
+		01702E6B29E2FC6E000F96B9 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01702E6A29E2FC6E000F96B9 /* UIImageView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		01702E6429E2C713000F96B9 /* UICollectionViewLayout+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Ext.swift"; sourceTree = "<group>"; };
 		01702E6629E2CFA9000F96B9 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		01702E6829E2F567000F96B9 /* Mutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mutex.swift; sourceTree = "<group>"; };
+		01702E6A29E2FC6E000F96B9 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				01702E5B29E1A1EA000F96B9 /* UIViewController+Ext.swift */,
 				01702E6429E2C713000F96B9 /* UICollectionViewLayout+Ext.swift */,
 				01702E6629E2CFA9000F96B9 /* String+Ext.swift */,
+				01702E6A29E2FC6E000F96B9 /* UIImageView+Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				01702E6929E2F567000F96B9 /* Mutex.swift in Sources */,
 				01702E6129E2128F000F96B9 /* MovieDetailViewController.swift in Sources */,
 				01702E2F29E0A75D000F96B9 /* FastLogger.swift in Sources */,
+				01702E6B29E2FC6E000F96B9 /* UIImageView+Ext.swift in Sources */,
 				01702E2C29E0A6EC000F96B9 /* Movie.swift in Sources */,
 				01702E3D29E0ABD0000F96B9 /* MovieInteractor.swift in Sources */,
 				01702E1429E06D57000F96B9 /* AppDelegate.swift in Sources */,

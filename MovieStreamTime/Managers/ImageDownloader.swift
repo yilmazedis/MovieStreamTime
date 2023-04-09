@@ -42,5 +42,4 @@ final class ImageDownloader {
     func cancel() {
         imageDataTask?.cancel()
     }
-
 }
