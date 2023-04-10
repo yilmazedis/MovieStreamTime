@@ -20,7 +20,7 @@ protocol ViewProtocol: AnyObject {
 final class MovieViewConroller: UIViewController {
     // MARK: - GenresInteractorProtocol
     var interactor: MovieInteractorProtocol?
-    var router: MovieRouterProtocol?
+    weak var router: MovieRouterProtocol?
     
     // MARK: - Private
     private let movieDataSource = MovieViewDataSource()
