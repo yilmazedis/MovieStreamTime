@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol MovieRouterProtocol {
+protocol MovieRouterProtocol: AnyObject {
     var entry: MovieEntryPoint? { get }
     
     static func start(id: Int) -> MovieRouterProtocol
