@@ -41,6 +41,7 @@ final class GenresViewConroller: UIViewController {
                 
         setCollectionViewLayout()
         
+        showActivityIndicator()
         interactor?.fetchData()
         
         configureNavigationBar(largeTitleColor: .white, backgoundColor: .systemBlue, tintColor: .white, title: K.TMDB.title, preferredLargeTitle: false)
@@ -58,8 +59,6 @@ final class GenresViewConroller: UIViewController {
 
 extension GenresViewConroller: GenresViewProtocol {
     func updateData(data: [Genre]) {
-        print(data)
-        
         guard !data.isEmpty else {
             FastLogger.log(what: K.InfoMessage.noGenre, about: .info)
             return
@@ -75,6 +74,7 @@ extension GenresViewConroller: GenresViewProtocol {
                 self?.pagingDataSource.viewControllers.append(view)
             }
             self?.pagingCollectionView.reloadData()
+            self?.hideActivityIndicator()
         }
     }
 }

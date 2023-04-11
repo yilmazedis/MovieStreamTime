@@ -34,3 +34,23 @@ extension UIViewController {
         }
     }
 }
+
+extension UIViewController {
+    func showActivityIndicator() {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.tag = 100 // Set a tag value to easily retrieve the activity indicator later
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false // Disable user interaction while the activity indicator is showing
+    }
+    
+    func hideActivityIndicator() {
+        if let activityIndicator = view.viewWithTag(100) as? UIActivityIndicatorView {
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+            view.isUserInteractionEnabled = true // Enable user interaction once the activity indicator is hidden
+        }
+    }
+}
