@@ -41,8 +41,8 @@ class MovieStreamTimeTests: XCTestCase {
     
     func testMovieRetainCycle() {
         
-        var viewController: MovieEntryPoint? = MovieRouter.start(id: 28).entry
-        weak var weakReference: MovieEntryPoint? = viewController
+        var viewController: MovieViewConroller? = MovieConfigurator.configure(id: 12, name: "Yilmaz")
+        weak var weakReference: MovieViewConroller? = viewController
         // Create a weak reference to the view controller to check if it gets deallocated
 
         viewController = nil
