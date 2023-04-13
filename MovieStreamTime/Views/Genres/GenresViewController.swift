@@ -68,10 +68,10 @@ extension GenresViewConroller: GenresViewProtocol {
             self?.pagingDataSource.data = data
             
             for el in data {
-                guard let view = MovieRouter.start(id: el.id).entry else { return }
-                view.title = el.name
                 
-                self?.pagingDataSource.viewControllers.append(view)
+                let vc = MovieConfigurator.configure(id: el.id, name: el.name)
+
+                self?.pagingDataSource.viewControllers.append(vc)
             }
             self?.pagingCollectionView.reloadData()
             self?.hideActivityIndicator()

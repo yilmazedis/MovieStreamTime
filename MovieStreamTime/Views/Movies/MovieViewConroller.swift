@@ -7,8 +7,6 @@
 
 import UIKit
 
-typealias MovieEntryPoint = ViewProtocol & UIViewController
-
 protocol ViewProtocol: AnyObject {
     var interactor: MovieInteractorProtocol? { get set }
     var router: MovieRouterProtocol? { get set }
@@ -20,7 +18,7 @@ protocol ViewProtocol: AnyObject {
 final class MovieViewConroller: UIViewController {
     // MARK: - GenresInteractorProtocol
     var interactor: MovieInteractorProtocol?
-    weak var router: MovieRouterProtocol?
+    var router: MovieRouterProtocol?
     
     // MARK: - Private
     private let movieDataSource = MovieViewDataSource()
